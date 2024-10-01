@@ -72,7 +72,11 @@
                             "\nСкидка на обучение: 0%");
                     }
                 }
-                else if (studentAge >= maxAge)
+                else if (studentAge > maxAge && studentAge < wastedAge)
+                {
+                    Console.WriteLine("К сожалению, вы слишком стары");
+                }
+                else if (studentAge >= wastedAge)
                 {
                     Console.WriteLine("Скорее всего вы уже потрачены");
                 }
