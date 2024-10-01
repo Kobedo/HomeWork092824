@@ -20,8 +20,8 @@
                 int wastedAge = 100;
                 string discount = "20%";
                 int discountAge = 65;
-                int studentID;
                 int lastStudentID = 1000;
+                int studentID = ++lastStudentID;
 
                 Console.WriteLine("\nВведите ваше имя...");
                 string studentName = Console.ReadLine();
@@ -42,7 +42,6 @@
 
                 if (studentAge > minAge && studentAge < maxAge && studentAge < wastedAge)
                 {
-                    studentID = ++lastStudentID;
                     Console.WriteLine("Укажите ваш GPA");
                     var studentGPA = Console.ReadLine();
 
