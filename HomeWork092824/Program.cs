@@ -12,9 +12,17 @@
 Нажмите <любую клавишу> для начала регистрации или <ESC> для выхода из программы");
 
             var startRegistration = Console.ReadKey(intercept: true); //ожидаем ввод от пользователя
-
+            
             if (startRegistration.Key != ConsoleKey.Escape)
             {
+                int minAge = 18;
+                int maxAge = 85;
+                int wastedAge = 100;
+                string discount = "20%";
+                int discountAge = 65;
+                int studentID;
+                int lastStudentID = 1000;
+
                 Console.WriteLine("\nВведите ваше имя...");
                 string studentName = Console.ReadLine();
 
@@ -25,13 +33,53 @@
                 string studentMiddleName = Console.ReadLine();
 
                 Console.WriteLine(@"Очень приятно, " + studentName + "!\n" +
-"Давайте же узнаем ваш возраст");
+"Давайте же узнаем ваш возраст\n" +
+"Обращаем ваше внимение, что к зачислению подходят студенты в возрасте от 18 до 85 лет!\n" +
+"Студенты страше 65 лет получают скидку в размере " + discount);
+                var age = Console.ReadLine();
+                int studentAge;
+                var isAgeParsable = int.TryParse(age, out studentAge);
 
-                Console.WriteLine("\nВведите месяц вашего рождения");
-                //var birthMonth = Console.ReadLine();
-                //var studentBirthMonth;
-                //birthMonth = DateOnly.TryParse(birthMonth, out DateOnly studentBirthMonth));
+                if (studentAge > minAge && studentAge < maxAge && studentAge < wastedAge)
+                {
+                    studentID = ++lastStudentID;
+                    Console.WriteLine("Укажите ваш GPA");
+                    var studentGPA = Console.ReadLine();
 
+                    if (studentAge >= discountAge)
+                    {
+
+                        Console.WriteLine("Поздравляем! Вы прошли регистрацию!" +
+                            "\nДанные вашего профиля:" +
+                            "\nНомер студента: " + studentID +
+                            "\nИмя: " + studentName +
+                            "\nФамилия: " + studentLastName +
+                            "\nОтчество: " + studentMiddleName +
+                            "\nВозраст: " + studentAge +
+                            "\nGPA: " + studentGPA +
+                            "\nСкидка на обучение: " + discount);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Поздравляем! Вы прошли регистрацию!" +
+                            "\nДанные вашего профиля:" +
+                            "\nНомер студента: " + studentID +
+                            "\nИмя: " + studentName +
+                            "\nФамилия: " + studentLastName +
+                            "\nОтчество: " + studentMiddleName +
+                            "\nВозраст: " + studentAge +
+                            "\nGPA: " + studentGPA +
+                            "\nСкидка на обучение: 0%");
+                    }
+                }
+                else if (studentAge >= maxAge)
+                {
+                    Console.WriteLine("Скорее всего вы уже потрачены");
+                }
+                else if (studentAge < minAge)
+                {
+                    Console.WriteLine("Агу, агугугу... Школу сначала закончи, сопля");
+                }
             }
             else
             {
