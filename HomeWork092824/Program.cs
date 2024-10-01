@@ -45,31 +45,49 @@
                     Console.WriteLine("Укажите ваш GPA");
                     var studentGPA = Console.ReadLine();
 
-                    if (studentAge >= discountAge)
-                    {
+                    Random rnd = new Random();
+                    int randomA = rnd.Next(0, 100);
+                    int randomB = rnd.Next(101, 200);
 
-                        Console.WriteLine("Поздравляем! Вы прошли регистрацию!" +
-                            "\nДанные вашего профиля:" +
-                            "\nНомер студента: " + studentID +
-                            "\nИмя: " + studentName +
-                            "\nФамилия: " + studentLastName +
-                            "\nОтчество: " + studentMiddleName +
-                            "\nВозраст: " + studentAge +
-                            "\nGPA: " + studentGPA +
-                            "\nСкидка на обучение: " + discount);
+                    Console.WriteLine(@"Для завершения регистрации нам нужно убедиться, что вы не робот" + 
+"\nВведите сумму этих чисел: " + randomA + " + " + randomB);
+
+                    var RandomAnswer = Console.ReadLine();
+                    int studentRandomAnswer;
+                    var isRandomAnswerParsable = int.TryParse(RandomAnswer, out studentRandomAnswer);
+                    if (studentRandomAnswer == randomA + randomB)
+                    {
+                        if (studentAge >= discountAge)
+                        {
+
+                            Console.WriteLine("Поздравляем! Вы прошли регистрацию!" +
+                                "\nДанные вашего профиля:" +
+                                "\nНомер студента: " + studentID +
+                                "\nИмя: " + studentName +
+                                "\nФамилия: " + studentLastName +
+                                "\nОтчество: " + studentMiddleName +
+                                "\nВозраст: " + studentAge +
+                                "\nGPA: " + studentGPA +
+                                "\nСкидка на обучение: " + discount);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Поздравляем! Вы прошли регистрацию!" +
+                                "\nДанные вашего профиля:" +
+                                "\nНомер студента: " + studentID +
+                                "\nИмя: " + studentName +
+                                "\nФамилия: " + studentLastName +
+                                "\nОтчество: " + studentMiddleName +
+                                "\nВозраст: " + studentAge +
+                                "\nGPA: " + studentGPA +
+                                "\nСкидка на обучение: 0%");
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Поздравляем! Вы прошли регистрацию!" +
-                            "\nДанные вашего профиля:" +
-                            "\nНомер студента: " + studentID +
-                            "\nИмя: " + studentName +
-                            "\nФамилия: " + studentLastName +
-                            "\nОтчество: " + studentMiddleName +
-                            "\nВозраст: " + studentAge +
-                            "\nGPA: " + studentGPA +
-                            "\nСкидка на обучение: 0%");
+                        Console.WriteLine("Одна ошибка и ты ошибся");
                     }
+                    
                 }
                 else if (studentAge > maxAge && studentAge < wastedAge)
                 {
